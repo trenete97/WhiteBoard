@@ -15,6 +15,7 @@ public class Main {
     Board b;
 
 
+
     ActionListener actionListener = new ActionListener() {
 
         public void actionPerformed(ActionEvent ev) {
@@ -40,10 +41,12 @@ public class Main {
     }
 
     public void show() {
+
         JFrame frame = new JFrame("Whiteboard");
+        String name = JOptionPane.showInputDialog(frame, "What's your name?");
         Container content = frame.getContentPane();
         content.setLayout(new BorderLayout());
-        b = new Board();
+        b = new Board(name);
         content.add(b, BorderLayout.CENTER);
 
         JPanel menu = new JPanel();
@@ -76,16 +79,16 @@ public class Main {
                 int result = JOptionPane.showConfirmDialog(frame,
                         "Do you want to Exit ?", "Exit Confirmation : ",
                         JOptionPane.YES_NO_OPTION);
-                if (result == JOptionPane.YES_OPTION)
+                if (result == JOptionPane.YES_OPTION) {
+                    b.close();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                }
                 else
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             }
         });
         frame.setVisible(true);
 
-        while (true) {
 
-        }
     }
 }

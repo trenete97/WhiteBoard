@@ -1,5 +1,10 @@
 package sample;
 
+import javafx.util.Pair;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,8 +25,13 @@ public class Board extends JComponent {
     private int X, Y, oldX, oldY;
     private String colorSelected = "Black";
     public List<Line> lines;
+    ChatClient client;
+    String name;
 
-    public Board() {
+    public Board(String name) {
+        client = new ChatClient(this);
+        client.startConnection(name);
+        this.name = name;
         lines = new ArrayList<>();
         setDoubleBuffered(false);
         addMouseListener(new MouseAdapter() {
@@ -39,7 +49,10 @@ public class Board extends JComponent {
                 X = ev.getX();
                 Y = ev.getY();
                 lines.get(lines.size()-1).addPoint(oldX, oldY);
-
+                JSONObject line = new JSONObject();
+                line.put("Points", lines.get(lines.size()-1).getPoints());
+                line.put("Color", lines.get(lines.size()-1).getColor());
+                client.send(line.toJSONString());
                 if (g2d != null) {
                     g2d.drawLine(oldX, oldY, X, Y);
                     repaint();
@@ -101,4 +114,58 @@ public class Board extends JComponent {
             lines.get(i).printPoints();
         }
     }
+    public void drawLine(String s) {
+        JSONParser parser = new JSONParser();
+        JSONObject json = null;
+        try {
+            json = (JSONObject) parser.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String color = (String) json.get("Color");
+        List<Pair<Number, Number>> points = (List<Pair<Number, Number>>) json.get("Points");
+        Line l = new Line(color, points);
+
+        //setColor
+        int x = (int) l.points.get(0).getKey();
+        int y = (int) l.points.get(0).getValue();
+        lines.add(l);
+        for (int i = 1; i < l.points.size(); ++i) {
+            g2d.drawLine(x, y, (int) l.points.get(i).getKey(), (int) l.points.get(i).getValue());
+            x = (int) l.points.get(i).getKey();
+            y = (int) l.points.get(i).getValue();
+        }
+
+    }
+
+    private void setColor(String color) {
+        switch (color) {
+            case ("Black"):
+                black();
+                break;
+            case ("Red"):
+                red();
+                break;
+            case ("Blue"):
+                blue();
+                break;
+            case ("Green"):
+                green();
+                break;
+            case ("Magenta"):
+                magenta();
+                break;
+
+        }
+    }
+
+    public void close() {
+        client.close();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 }

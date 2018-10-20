@@ -9,9 +9,15 @@ public class Line {
 
     private String color;
     List<Pair<Number, Number>> points;
+
     public Line(String color) {
         points = new ArrayList<>();
         this.color = color;
+    }
+
+    public Line(String color, List<Pair<Number, Number>> points) {
+        this.color = color;
+        this.points = points;
     }
 
     public void addPoint(int x, int y) {

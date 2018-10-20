@@ -17,6 +17,7 @@ public class Main {
 
         public void actionPerformed(ActionEvent ev) {
             if (ev.getSource() == clearButton) {
+                b.printLines();
                 b.clear();
             } else if (ev.getSource() == blackButton) {
                 b.black();
@@ -70,5 +71,9 @@ public class Main {
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        while (true) {
+
+        }
     }
 }

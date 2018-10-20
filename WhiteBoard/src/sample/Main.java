@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
@@ -17,7 +19,6 @@ public class Main {
 
         public void actionPerformed(ActionEvent ev) {
             if (ev.getSource() == clearButton) {
-                b.printLines();
                 b.clear();
             } else if (ev.getSource() == blackButton) {
                 b.black();
@@ -69,11 +70,17 @@ public class Main {
         content.add(menu, BorderLayout.NORTH);
 
         frame.setSize(600, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                int result = JOptionPane.showConfirmDialog(frame,
+                        "Do you want to Exit ?", "Exit Confirmation : ",
+                        JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION)
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                else
+                    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            }
+        });
         frame.setVisible(true);
-
-        while (true) {
-
-        }
     }
 }

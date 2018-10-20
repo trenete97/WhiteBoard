@@ -14,7 +14,7 @@ public class Line {
         else {
             points = new ArrayList<>();
             color = "";
-            color += s.charAt(0);
+            color += s.charAt(1);
             int i = 4;
             while (s.charAt(i) != ']') {
                 String numb = "";

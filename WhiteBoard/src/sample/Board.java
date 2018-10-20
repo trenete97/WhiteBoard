@@ -83,7 +83,7 @@ public class Board extends JComponent {
 
     public void black() {
         g2d.setPaint(Color.black);
-        colorSelected = "B";
+        colorSelected = "N";
     }
 
     public void magenta() {
@@ -104,7 +104,7 @@ public class Board extends JComponent {
     public void drawLine(String s) {
         Line l = new Line(s, false);
 
-        //setColor
+        setColor(l.getColor());
         int x = (int) l.points.get(0).a;
         int y = (int) l.points.get(0).b;
         lines.add(l);

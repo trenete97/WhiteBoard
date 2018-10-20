@@ -123,17 +123,17 @@ public class Board extends JComponent {
             e.printStackTrace();
         }
         String color = (String) json.get("Color");
-        List<Pair<Number, Number>> points = (List<Pair<Number, Number>>) json.get("Points");
+        List<PairInt> points = (List<PairInt>) json.get("Points");
         Line l = new Line(color, points);
 
         //setColor
-        int x = (int) l.points.get(0).getKey();
-        int y = (int) l.points.get(0).getValue();
+        int x = (int) l.points.get(0).a;
+        int y = (int) l.points.get(0).b;
         lines.add(l);
         for (int i = 1; i < l.points.size(); ++i) {
-            g2d.drawLine(x, y, (int) l.points.get(i).getKey(), (int) l.points.get(i).getValue());
-            x = (int) l.points.get(i).getKey();
-            y = (int) l.points.get(i).getValue();
+            g2d.drawLine(x, y, (int) l.points.get(i).a, (int) l.points.get(i).b);
+            x = (int) l.points.get(i).a;
+            y = (int) l.points.get(i).b;
         }
 
     }

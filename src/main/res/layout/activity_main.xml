@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WhiteboardActivity">
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_my_button_clear"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Clear whiteboard"
+            android:onClick="buttonClearClick"/>
+
+
+    </LinearLayout>
+
+    <com.example.mario.whiteboard.PaintView
+        android:id="@+id/activity_my_view_whiteboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_weight="1"
+        android:background="#FFFFFFFF"
+        />
+
+    <SeekBar
+        android:id="@+id/simpleSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="true"
+        android:max="70"
+        android:progress="20"
+        android:layout_marginBottom="20px"/>
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:background="#FFCCCCCC"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:weightSum="100"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn1"
+
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_weight="20"
+            android:layout_centerInParent="true"
+            android:background="#3CB371"
+            android:onClick="buttonPress"
+            />
+        <Button
+            android:id="@+id/btn2"
+            android:layout_weight="20"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="#FF69B4"
+            android:onClick="buttonPress"
+            />
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_weight="20"
+            android:layout_height="fill_parent"
+            android:background="#FFD700"
+            android:onClick="buttonPress"
+            />
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_weight="20"
+            android:layout_height="fill_parent"
+            android:background="#00BFFF"
+            android:onClick="buttonPress"
+        />
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="wrap_content"
+            android:layout_weight="20"
+            android:layout_height="fill_parent"
+            android:background="#e42828"
+            android:onClick="buttonPress"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

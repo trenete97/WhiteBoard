@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/thumb">
+        <shape android:shape="oval" android:id="@+id/thumb1">
+            <solid android:color="#000000"/>
+            <size
+                android:width="35dp"
+                android:height="35dp"/>
+        </shape>
+    </item>
+</layer-list>

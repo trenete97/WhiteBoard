@@ -55,8 +55,8 @@ public class ChatClient {
                                 ++i;
 
                                 if (!name_board.equals(name_read)) {
-                                    String JSON_line = line.substring(i);
-                                    b.drawLine(JSON_line);
+                                    String line_S = line.substring(i);
+                                    b.drawLine(line_S);
                                 }
 
                             }

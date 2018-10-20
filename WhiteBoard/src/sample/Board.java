@@ -1,9 +1,5 @@
 package sample;
 
-import javafx.util.Pair;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,7 +19,7 @@ public class Board extends JComponent {
     private Image image;
     private Graphics2D g2d;
     private int X, Y, oldX, oldY;
-    private String colorSelected = "Black";
+    private String colorSelected = "N";
     public List<Line> lines;
     ChatClient client;
     String name;
@@ -38,7 +34,7 @@ public class Board extends JComponent {
             public void mousePressed(MouseEvent e) {
                 oldX = e.getX();
                 oldY = e.getY();
-                lines.add(new Line(colorSelected));
+                lines.add(new Line(colorSelected, true));
                 lines.get(0).addPoint(oldX, oldY);
 
             }
@@ -49,10 +45,7 @@ public class Board extends JComponent {
                 X = ev.getX();
                 Y = ev.getY();
                 lines.get(lines.size()-1).addPoint(oldX, oldY);
-                JSONObject line = new JSONObject();
-                line.put("Points", lines.get(lines.size()-1).getPoints());
-                line.put("Color", lines.get(lines.size()-1).getColor());
-                client.send(line.toJSONString());
+                client.send(lines.get(lines.size()-1).LineToString());
                 if (g2d != null) {
                     g2d.drawLine(oldX, oldY, X, Y);
                     repaint();
@@ -78,53 +71,38 @@ public class Board extends JComponent {
         g2d.setPaint(Color.white);
         g2d.fillRect(0, 0, getSize().width, getSize().height);
         g2d.setPaint(Color.black);
-        colorSelected = "Black";
+        colorSelected = "N";
         repaint();
         lines.clear();
     }
 
     public void red() {
         g2d.setPaint(Color.red);
-        colorSelected = "Red";
+        colorSelected = "R";
     }
 
     public void black() {
         g2d.setPaint(Color.black);
-        colorSelected = "Black";
+        colorSelected = "B";
     }
 
     public void magenta() {
         g2d.setPaint(Color.magenta);
-        colorSelected = "Magenta";
+        colorSelected = "M";
     }
 
     public void green() {
         g2d.setPaint(Color.green);
-        colorSelected = "Green";
+        colorSelected = "G";
     }
 
     public void blue() {
         g2d.setPaint(Color.blue);
-        colorSelected = "Blue";
+        colorSelected = "B";
     }
 
-    public void printLines() {
-        for (int i = 0; i < lines.size(); ++i) {
-            System.out.println("Linea: " + i);
-            lines.get(i).printPoints();
-        }
-    }
     public void drawLine(String s) {
-        JSONParser parser = new JSONParser();
-        JSONObject json = null;
-        try {
-            json = (JSONObject) parser.parse(s);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String color = (String) json.get("Color");
-        List<PairInt> points = (List<PairInt>) json.get("Points");
-        Line l = new Line(color, points);
+        Line l = new Line(s, false);
 
         //setColor
         int x = (int) l.points.get(0).a;
@@ -132,6 +110,7 @@ public class Board extends JComponent {
         lines.add(l);
         for (int i = 1; i < l.points.size(); ++i) {
             g2d.drawLine(x, y, (int) l.points.get(i).a, (int) l.points.get(i).b);
+            repaint();
             x = (int) l.points.get(i).a;
             y = (int) l.points.get(i).b;
         }
@@ -140,19 +119,19 @@ public class Board extends JComponent {
 
     private void setColor(String color) {
         switch (color) {
-            case ("Black"):
+            case ("N"):
                 black();
                 break;
-            case ("Red"):
+            case ("R"):
                 red();
                 break;
-            case ("Blue"):
+            case ("B"):
                 blue();
                 break;
-            case ("Green"):
+            case ("G"):
                 green();
                 break;
-            case ("Magenta"):
+            case ("M"):
                 magenta();
                 break;
 

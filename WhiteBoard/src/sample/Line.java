@@ -29,7 +29,7 @@ public class Line {
     public void printPoints() {
         System.out.println("Color: " + color);
         for (int i = 0; i < points.size(); ++i) {
-            System.out.println("X: " + points.get(i).getKey() + " Y: " + points.get(i).getValue());
+            System.out.println("X= " + points.get(i).getKey() + " Y= " + points.get(i).getValue());
         }
     }
 }

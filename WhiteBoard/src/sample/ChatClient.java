@@ -29,6 +29,7 @@ public class ChatClient {
         private Socket socket;
         private OutputStream outputStream;
 
+
         /**
          * Create socket, and receiving thread
          */
@@ -46,7 +47,9 @@ public class ChatClient {
                         while ((line = reader.readLine()) != null) {
                             if (line.charAt(0) == '<') {
                                 String name_board = b.getName();
+
                                 String name_read = "";
+
                                 int i = 1;
                                 while(line.charAt(i) != '>') {
                                     name_read += line.charAt(i);
@@ -56,7 +59,9 @@ public class ChatClient {
 
                                 if (!name_board.equals(name_read)) {
                                     String line_S = line.substring(i);
-                                    if (line_S.charAt(1) == 'C') {}
+                                    if (line_S.charAt(1) == 'C') {
+                                        b.clear();
+                                    }
                                     else b.drawLine(line_S);
                                 }
 

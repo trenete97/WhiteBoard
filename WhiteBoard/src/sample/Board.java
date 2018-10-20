@@ -72,8 +72,7 @@ public class Board extends JComponent {
     public void clear() {
         g2d.setPaint(Color.white);
         g2d.fillRect(0, 0, getSize().width, getSize().height);
-        g2d.setPaint(Color.black);
-        colorSelected = "N";
+        setColor(colorSelected);
         repaint();
         lines.clear();
     }
@@ -148,6 +147,5 @@ public class Board extends JComponent {
     public String getName() {
         return name;
     }
-
 
 }

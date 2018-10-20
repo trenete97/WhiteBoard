@@ -20,6 +20,7 @@ public class Main {
 
         public void actionPerformed(ActionEvent ev) {
             if (ev.getSource() == clearButton) {
+                b.client.send("C");
                 b.clear();
             } else if (ev.getSource() == blackButton) {
                 b.black();

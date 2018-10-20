@@ -48,6 +48,8 @@ public class Board extends JComponent {
                 client.send(lines.get(lines.size()-1).LineToString());
                 if (g2d != null) {
                     g2d.drawLine(oldX, oldY, X, Y);
+                    lines.get(lines.size()-1).addPoint(X, Y);
+                    lines.add(new Line(colorSelected, true));
                     repaint();
                     oldX = X;
                     oldY = Y;
@@ -114,25 +116,26 @@ public class Board extends JComponent {
             x = (int) l.points.get(i).a;
             y = (int) l.points.get(i).b;
         }
+        setColor(colorSelected);
 
     }
 
     private void setColor(String color) {
         switch (color) {
             case ("N"):
-                black();
+                g2d.setPaint(Color.black);
                 break;
             case ("R"):
-                red();
+                g2d.setPaint(Color.red);
                 break;
             case ("B"):
-                blue();
+                g2d.setPaint(Color.blue);
                 break;
             case ("G"):
-                green();
+                g2d.setPaint(Color.green);
                 break;
             case ("M"):
-                magenta();
+                g2d.setPaint(Color.magenta);
                 break;
 
         }

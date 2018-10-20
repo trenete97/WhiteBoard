@@ -56,8 +56,8 @@ public class ChatClient {
 
                                 if (!name_board.equals(name_read)) {
                                     String line_S = line.substring(i);
-                                    System.out.println(line_S);
-                                    b.drawLine(line_S);
+                                    if (line_S.charAt(1) == 'C') {}
+                                    else b.drawLine(line_S);
                                 }
 
                             }

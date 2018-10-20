@@ -44,6 +44,14 @@ public class Main {
 
         JFrame frame = new JFrame("Whiteboard");
         String name = JOptionPane.showInputDialog(frame, "What's your name?");
+        while (name != null){
+            if ("".equals(name))name = JOptionPane.showInputDialog(frame, "Name field is empty!");
+            else if (!name.matches("[A-Za-z]*"))name = JOptionPane.showInputDialog(frame, "Write a valid name! (i.e. [A-Z,a-z])");
+            else break;
+        }
+        if(name == null){
+            System.exit(0);
+        }
         Container content = frame.getContentPane();
         content.setLayout(new BorderLayout());
         b = new Board(name);

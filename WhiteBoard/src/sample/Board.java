@@ -45,10 +45,10 @@ public class Board extends JComponent {
                 X = ev.getX();
                 Y = ev.getY();
                 lines.get(lines.size()-1).addPoint(oldX, oldY);
-                client.send(lines.get(lines.size()-1).LineToString());
                 if (g2d != null) {
                     g2d.drawLine(oldX, oldY, X, Y);
                     lines.get(lines.size()-1).addPoint(X, Y);
+                    client.send(lines.get(lines.size()-1).LineToString());
                     lines.add(new Line(colorSelected, true));
                     repaint();
                     oldX = X;

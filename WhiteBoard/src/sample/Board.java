@@ -49,6 +49,9 @@ public class Board extends JComponent {
                     g2d.drawLine(oldX, oldY, X, Y);
                     lines.get(lines.size()-1).addPoint(X, Y);
                     client.send(lines.get(lines.size()-1).LineToString());
+                    if (colorSelected.equals("E")){
+                        writeEraser();
+                    }
                     lines.add(new Line(colorSelected, true));
                     repaint();
                     oldX = X;
@@ -56,6 +59,23 @@ public class Board extends JComponent {
                 }
             }
         });
+    }
+
+    public void writeEraser(){
+        for (int i = 1; i <= 4; ++i){
+            g2d.drawLine(oldX+i, oldY+i, X+i, Y+i);
+            lines.add(new Line("E", true));
+            lines.get(lines.size()-1).addPoint(oldX+i, oldY+i);
+            lines.get(lines.size()-1).addPoint(X+i, Y+i);
+            client.send(lines.get(lines.size()-1).LineToString());
+
+            g2d.drawLine(oldX-i, oldY-i, X-i, Y-i);
+            lines.add(new Line("E", true));
+            lines.get(lines.size()-1).addPoint(oldX-i, oldY-i);
+            lines.get(lines.size()-1).addPoint(X-i, Y-i);
+            client.send(lines.get(lines.size()-1).LineToString());
+        }
+
     }
 
     protected void paintComponent(Graphics g) {
@@ -102,6 +122,11 @@ public class Board extends JComponent {
         colorSelected = "B";
     }
 
+    public void eraser() {
+        g2d.setPaint(Color.white);
+        colorSelected = "E";
+    }
+
     public void drawLine(String s) {
         Line l = new Line(s, false);
 
@@ -136,6 +161,9 @@ public class Board extends JComponent {
             case ("M"):
                 g2d.setPaint(Color.magenta);
                 break;
+            case ("E"):
+                g2d.setPaint(Color.white);
+                break;
 
         }
     }
@@ -147,5 +175,6 @@ public class Board extends JComponent {
     public String getName() {
         return name;
     }
+
 
 }

@@ -1,17 +1,18 @@
 package sample;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import javax.swing.*;
+import javax.swing.text.html.ImageView;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.*;
+
 
 public class Main {
 
-    JButton clearButton, blackButton, blueButton, greenButton, redButton, magentaButton;
+    JButton clearButton, blackButton, blueButton, greenButton, redButton, magentaButton,eraserButton;
     Board b;
 
 
@@ -32,6 +33,8 @@ public class Main {
                 b.red();
             } else if (ev.getSource() == magentaButton) {
                 b.magenta();
+            } else if (ev.getSource() == eraserButton) {
+                b.eraser();
             }
         }
     };
@@ -73,6 +76,14 @@ public class Main {
         magentaButton.addActionListener(actionListener);
 
 
+        ImageIcon img = new ImageIcon("eraser.png");
+        Image img1 = img.getImage() ;
+        Image newimg = img1.getScaledInstance( 20,20, java.awt.Image.SCALE_SMOOTH ) ;
+        img = new ImageIcon( newimg );
+        eraserButton = new JButton(img);
+        eraserButton.addActionListener(actionListener);
+
+        menu.add(eraserButton);
         menu.add(greenButton);
         menu.add(blueButton);
         menu.add(blackButton);
@@ -96,7 +107,6 @@ public class Main {
             }
         });
         frame.setVisible(true);
-
 
     }
 }

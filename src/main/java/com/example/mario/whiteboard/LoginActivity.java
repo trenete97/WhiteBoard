@@ -15,6 +15,8 @@ import android.widget.Toast;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    Board board;
+    public String name = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +30,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(!username.getText().toString().matches("")){
-                    Intent memory = new Intent(getApplicationContext(), WhiteboardActivity.class);
-                    startActivity(memory);
-                    finish();
+                    name = username.getText().toString();
+                    Intent board = new Intent(getApplicationContext(), WhiteboardActivity.class);
+                    board.putExtra("name", name);
+                    startActivity(board);
+                  //  finish();
                 }
                 else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Wrong username or password", Toast.LENGTH_SHORT);

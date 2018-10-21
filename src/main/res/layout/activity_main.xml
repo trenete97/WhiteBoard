@@ -12,6 +12,8 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
+
+
         <Button
             android:id="@+id/activity_my_button_clear"
             style="?android:attr/buttonBarButtonStyle"
@@ -32,6 +34,7 @@
         android:background="#FFFFFFFF"
         />
 
+    <!--
     <SeekBar
         android:id="@+id/simpleSeekBar"
         android:layout_width="match_parent"
@@ -39,7 +42,7 @@
         android:fadeScrollbars="true"
         android:max="70"
         android:progress="20"
-        android:layout_marginBottom="20px"/>
+        android:layout_marginBottom="20px"/>-->
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:background="#FFCCCCCC"
@@ -71,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_weight="20"
             android:layout_height="fill_parent"
-            android:background="#FFD700"
+            android:background="#000000"
             android:onClick="buttonPress"
             />
         <Button

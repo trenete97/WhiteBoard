@@ -5,6 +5,8 @@ A whiteBoard that allows to share draws in real time.
 
 Made by: Carlos Bayona, Martí Ferret, Mario Gamarro, Raül Montoya
 
+
+
 Usage:
 
 Run the server

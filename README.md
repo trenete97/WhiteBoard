@@ -1,3 +1,2 @@
 # WhiteBoard
 HackUPC project
-Holiii :))

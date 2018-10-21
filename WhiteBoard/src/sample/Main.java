@@ -12,7 +12,8 @@ import java.awt.event.WindowEvent;
 
 public class Main {
 
-    JButton clearButton, blackButton, blueButton, greenButton, redButton, magentaButton,eraserButton;
+    JButton clearButton, blackButton, blueButton, greenButton, redButton, magentaButton;
+    //JButton eraserButton;
     Board b;
 
 
@@ -33,9 +34,9 @@ public class Main {
                 b.red();
             } else if (ev.getSource() == magentaButton) {
                 b.magenta();
-            } else if (ev.getSource() == eraserButton) {
+            }/* else if (ev.getSource() == eraserButton) {
                 b.eraser();
-            }
+            }*/
         }
     };
 
@@ -75,15 +76,15 @@ public class Main {
         magentaButton = new JButton("Magenta");
         magentaButton.addActionListener(actionListener);
 
-
+        /*
         ImageIcon img = new ImageIcon("eraser.png");
         Image img1 = img.getImage() ;
         Image newimg = img1.getScaledInstance( 20,20, java.awt.Image.SCALE_SMOOTH ) ;
         img = new ImageIcon( newimg );
         eraserButton = new JButton(img);
         eraserButton.addActionListener(actionListener);
-
-        menu.add(eraserButton);
+*/
+        //menu.add(eraserButton);
         menu.add(greenButton);
         menu.add(blueButton);
         menu.add(blackButton);
@@ -92,7 +93,7 @@ public class Main {
         menu.add(clearButton);
         content.add(menu, BorderLayout.NORTH);
 
-        frame.setSize(600, 600);
+        frame.setSize(1024, 1024);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 int result = JOptionPane.showConfirmDialog(frame,

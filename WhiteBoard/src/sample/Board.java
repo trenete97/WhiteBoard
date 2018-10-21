@@ -49,9 +49,9 @@ public class Board extends JComponent {
                     g2d.drawLine(oldX, oldY, X, Y);
                     lines.get(lines.size()-1).addPoint(X, Y);
                     client.send(lines.get(lines.size()-1).LineToString());
-                    if (colorSelected.equals("E")){
+                    /*if (colorSelected.equals("E")){
                         writeEraser();
-                    }
+                    }*/
                     lines.add(new Line(colorSelected, true));
                     repaint();
                     oldX = X;

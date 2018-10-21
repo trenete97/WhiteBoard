@@ -1,0 +1,11 @@
+Run the server
+java -jar Server100.jar
+
+Run the client
+java -jar WhiteBoard.jar
+
+The client needs the ip address of the machine where the server is running.
+
+Choose a username to identify yourself.
+
+Enjoy drawing.

@@ -133,7 +133,7 @@ public class Board extends JComponent {
         setColor(l.getColor());
         int x = (int) l.points.get(0).a;
         int y = (int) l.points.get(0).b;
-        lines.add(l);
+        //lines.add(l);
         for (int i = 1; i < l.points.size(); ++i) {
             g2d.drawLine(x, y, (int) l.points.get(i).a, (int) l.points.get(i).b);
             repaint();
